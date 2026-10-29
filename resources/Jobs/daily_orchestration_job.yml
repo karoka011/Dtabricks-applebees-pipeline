@@ -1,0 +1,19 @@
+resources:
+  jobs:
+    Applebees_POS_Medallion_Daily_Update:
+      name: Applebees POS Medallion - Daily Update
+      description: Scheduled daily update of the Applebees POS Medallion Pipeline
+        (bronze/silver/gold). Runs at 2 AM America/Mexico_City to process the
+        prior day's check files; bronze ingestion is incremental via Auto
+        Loader, so runs without new files are cheap no-ops. Provides run history
+        and failure tracking for the production pipeline.
+      schedule:
+        quartz_cron_expression: 0 0 2 * * ? *
+        timezone_id: America/Mexico_City
+        pause_status: UNPAUSED
+      tasks:
+        - task_key: applebees_medallion_update
+          pipeline_task:
+            pipeline_id: ed8cec36-12c5-4030-9230-4353823f7fdb
+      queue:
+        enabled: true

@@ -1,1 +1,0 @@
-# Dtabricks-applebees-pipeline

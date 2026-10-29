@@ -1,0 +1,15 @@
+resources:
+  pipelines:
+    pipeline_applebees_pos_medallion_pipeline:
+      name: Applebees POS Medallion Pipeline
+      libraries:
+        - glob:
+            include: /Workspace/Shared/Dtabricks-applebees-pipeline/src/transformations/**
+      schema: default
+      continuous: false
+      development: false
+      photon: true
+      channel: CURRENT
+      catalog: applebees
+      serverless: true
+      root_path: /Workspace/Shared/Dtabricks-applebees-pipeline
